@@ -31,8 +31,8 @@ apt-transport-https        vim                && \
 \
 composer global require laravel/installer
 RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' &&
-sudo apt update && sudo apt install jenkins
+RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN sudo apt \ update \ install jenkins
 ENTRYPOINT ["apache2ctl"]
 CMD       ["-DFOREGROUND"]
 RUN ln -s $HOME/.composer/vendor/bin/laravel /usr/bin/laravel && cd /var/www/html \
