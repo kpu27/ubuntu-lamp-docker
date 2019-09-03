@@ -6,10 +6,10 @@ EXPOSE      80 8080 5000
 #             ----- CHANGE MOUNT ROUTE ----- 
 # VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
-RUN sudo apt install wget
+RUN apt install wget
 RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-RUN sudo sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
-RUN sudo apt update
+RUN sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
+RUN apt update
 RUN install jenkins
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
