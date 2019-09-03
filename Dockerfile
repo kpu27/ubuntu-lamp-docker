@@ -19,6 +19,9 @@ RUN apt install -y daemon
 RUN apt install -y procps
 RUN apt install -y psmisc
 RUN apt install -y net-tools
+RUN apt install -y gnupg
+RUN apt install -y gnupg1
+RUN apt install -y gnupg2
 RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 RUN sed -i -e '1ideb https://pkg.jenkins.io/debian-stable binary/\' '/etc/apt/sources.list'
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
