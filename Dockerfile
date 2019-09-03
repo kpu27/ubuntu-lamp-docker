@@ -7,6 +7,7 @@ EXPOSE      80 8080 5000
 # VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
 RUN apt update
+RUN apt install -y sudo
 RUN apt install -y wget 
 RUN apt install -y daemon
 RUN apt install -y procps
