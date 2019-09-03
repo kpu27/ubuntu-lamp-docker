@@ -8,10 +8,10 @@ EXPOSE      80 8080 5000
 WORKDIR     /var/www/html
 RUN apt update
 RUN apt install wget
-RUN sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -t
-RUN sh -c echo 'deb http://pkg.jenkins.io/debian-stable binary/' >> /etc/apt/sources.list.d/jenkins.list
+# RUN sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -t
+RUN wget https://pkg.jenkins.io/debian-stable/binary/jenkins_2.176.3_all.deb
 RUN apt update
-RUN install jenkins
+RUN apt install -f jenkins_2.176.3_all.deb
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && apt-get -qq -y install \
