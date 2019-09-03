@@ -9,6 +9,7 @@ WORKDIR     /var/www/html
 RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 RUN sudo sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
 RUN sudo apt update
+RUN sudo apt install wget
 RUN install jenkins
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
