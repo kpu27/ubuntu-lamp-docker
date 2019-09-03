@@ -1,5 +1,5 @@
 # Dockerfile  -  https://github.com/kpu27/ubuntu-dockerfile
-FROM        debian:stretch-slim
+FROM        ubuntu:bionic
 LABEL       MAINTAINER => Telegram : @kpu_27
 ENV         DEBIAN_FRONTEND=noninteractive
 EXPOSE      80 8080 5000
