@@ -6,12 +6,12 @@ EXPOSE      80 8080 5000
 #             ----- CHANGE MOUNT ROUTE ----- 
 # VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
-RUN sed -i -e '1ideb http://ftp.us.debian.org/debian/ stretch main contrib non-free\
-deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free\
-deb http://security.debian.org/debian-security stretch/updates main contrib non-free\
-deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free\
-deb http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\
-deb-src http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\' '/etc/apt/sources.list'
+# RUN sed -i -e '1ideb http://ftp.us.debian.org/debian/ stretch main contrib non-free\
+# deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free\
+# deb http://security.debian.org/debian-security stretch/updates main contrib non-free\
+# deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free\
+# deb http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\
+# deb-src http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\' '/etc/apt/sources.list'
 RUN apt update
 RUN apt install -y sudo
 RUN apt install -y wget 
