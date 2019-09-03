@@ -8,8 +8,8 @@ EXPOSE      80 8080 5000
 WORKDIR     /var/www/html
 RUN apt update
 RUN apt install wget
-RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-RUN sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -
+RUN sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 RUN apt update
 RUN install jenkins
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
