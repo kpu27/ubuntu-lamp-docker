@@ -22,6 +22,8 @@ RUN apt install -y net-tools
 RUN apt install -y gnupg
 RUN apt install -y gnupg1
 RUN apt install -y gnupg2
+RUN apt install -y openjdk-8-jdk
+RUN apt install -y maven
 RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 RUN sudo apt update
@@ -58,3 +60,4 @@ cd /var/www/html/proyecto_laravel-angular && php artisan preset react && \
 npm cache clean --force  && npm install && npm run dev && a2enmod rewrite && \
 apt remove -y software-properties-common && apt autoremove -y && \
 rm -rf /var/lib/apt/lists/*
+RUN npm i @angular/cli
