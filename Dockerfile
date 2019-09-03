@@ -4,7 +4,7 @@ LABEL       MAINTAINER => Telegram : @kpu_27
 ENV         DEBIAN_FRONTEND=noninteractive
 EXPOSE      80 8080 5000
 #             ----- CHANGE MOUNT ROUTE ----- 
-VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
+# VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
