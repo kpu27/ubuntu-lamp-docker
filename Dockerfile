@@ -30,8 +30,8 @@ apt-get -y update && apt-get -qq -y install software-properties-common \
 apt-transport-https        vim                && \
 \
 composer global require laravel/installer
-RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add - &&
-sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' &&
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' &&
 sudo apt update && sudo apt install jenkins
 ENTRYPOINT ["apache2ctl"]
 CMD       ["-DFOREGROUND"]
