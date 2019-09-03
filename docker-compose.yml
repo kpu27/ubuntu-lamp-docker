@@ -4,7 +4,7 @@ db:
     - "3306:3306"
   volumes:
 #             ----- CHANGE MOUNT ROUTE ----- 
-    - /home/kpu/Archivos/webserver/db:/var/lib/mysq
+    - /home/"USERNAME"/db:/var/lib/mysq
   environment:
     MYSQL_ROOT_PASSWORD: h4ck3d
     MYSQL_USER: root
@@ -16,6 +16,8 @@ web:
     - db
   ports:
     - "4040:80"
+    - "8080:8080"
+    . "5000:5000"
   volumes:
 #             ----- CHANGE MOUNT ROUTE -----
-    - /home/kpu/Archivos/webserver/web:/var/www/html
+    - /home/"USERNAME"/web:/var/www/html
