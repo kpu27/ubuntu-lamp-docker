@@ -12,8 +12,8 @@ RUN apt install -y daemon
 RUN apt install -y procps
 RUN apt install -y psmisc
 RUN apt install -y net-tools
-RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | apt-key add -t
-RUN sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+RUN sed -i -e '1ideb https://pkg.jenkins.io/debian-stable binary/\' /etc/apt/sources.list
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && apt-get -qq -y install \
