@@ -6,6 +6,7 @@ EXPOSE      80 8080 5000
 #             ----- CHANGE MOUNT ROUTE ----- 
 # VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
+RUN apt update
 RUN apt install wget
 RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 RUN sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
