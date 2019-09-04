@@ -34,12 +34,6 @@ apt-transport-https         composer             \
 && \
 composer global require laravel/installer && \
 npm i @angular/cli \
-# INSTALLING THE OLD JKENKIN
-RUN sudo apt update
-RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-RUN sudo apt update
-RUN sudo apt install jenkins
 ENTRYPOINT ["apache2ctl"]
 CMD       ["-DFOREGROUND"]
 RUN ln -s $HOME/.composer/vendor/bin/laravel /usr/bin/laravel && cd /var/www/html \
@@ -48,4 +42,4 @@ cd /var/www/html/proyecto_laravel-angular && php artisan preset react && \
 npm cache clean --force  && npm install && npm run dev && a2enmod rewrite && \
 apt remove -y software-properties-common && apt autoremove -y && \
 rm -rf /var/lib/apt/lists/*
-RUN npm i @angular/cli
+
