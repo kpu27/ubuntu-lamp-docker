@@ -3,55 +3,43 @@ FROM        ubuntu:bionic
 LABEL       MAINTAINER => Telegram : @kpu_27
 ENV         DEBIAN_FRONTEND=noninteractive
 EXPOSE      80 8080 5000
-#             ----- CHANGE MOUNT ROUTE ----- 
-# VOLUME      ["/home/kpu/Archivos/webserver/web", "/var/www/html"]
 WORKDIR     /var/www/html
-# RUN sed -i -e '1ideb http://ftp.us.debian.org/debian/ stretch main contrib non-free\
-# deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free\
-# deb http://security.debian.org/debian-security stretch/updates main contrib non-free\
-# deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free\
-# deb http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\
-# deb-src http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free\' '/etc/apt/sources.list'
-RUN apt update
-RUN apt install -y sudo
-RUN apt install -y wget 
-RUN apt install -y daemon
-RUN apt install -y procps
-RUN apt install -y psmisc
-RUN apt install -y net-tools
-RUN apt install -y gnupg
-RUN apt install -y gnupg1
-RUN apt install -y gnupg2
-RUN apt install -y openjdk-8-jdk
-RUN apt install -y maven
-RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-RUN sudo apt update
-RUN sudo apt install jenkins
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list && \
 apt-get update && apt-get -y upgrade && apt-get -y install language-pack-en-base && \
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && apt-get -qq -y install \
 curl apt-utils gnupg && curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
 apt-get -y update && apt-get -qq -y install software-properties-common \
 \
-                php          git                 \ 
-            apache2         unzip                \ 
+                php             git              \ 
+               sudo            wget              \
+              gnupg           unzip              \
+             daemon          psmisc              \
+            apache2         procps               \ 
           net-tools        dh-make               \
          phpmyadmin       php-curl               \
          php-xmlrpc     php-zip                  \ 
         lsb-release    php-pear                  \ 
         php-imagick   php-dev                    \
         php-gettext  php-xml                     \ 
-       php-mbstring php-mysql                    \ 
-      libmcrypt-dev  php-fpm                     \
-      packaging-dev   composer                   \
-      apache2-utils    nodejs                    \ 
-    ca-certificates     php-gd                   \  
-   git-buildpackage      nano                    \
- libapache2-mod-php       wget                   \  
-apt-transport-https        vim                && \
+       php-mbstring nano vim                     \ 
+      libmcrypt-dev  php-mysql                   \
+      openjdk-8-jdk   php-fpm                    \
+      packaging-dev    nodejs                    \
+      apache2-utils     php-gd                   \
+    ca-certificates      gnupg1                  \ 
+   git-buildpackage       gnupg2                 \
+ libapache2-mod-php        maven                 \  
+apt-transport-https         composer             \ 
 \
-composer global require laravel/installer
+&& \
+composer global require laravel/installer && \
+npm i @angular/cli \
+# INSTALLING THE OLD JKENKIN
+RUN sudo apt update
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN sudo apt update
+RUN sudo apt install jenkins
 ENTRYPOINT ["apache2ctl"]
 CMD       ["-DFOREGROUND"]
 RUN ln -s $HOME/.composer/vendor/bin/laravel /usr/bin/laravel && cd /var/www/html \
